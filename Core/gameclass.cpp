@@ -5,9 +5,39 @@
 #include "state.hpp"
 #include "gameclass.hpp"
 namespace yahtzee{
+    //Straight
     void GameClass::selectCategory(uint8_t category){
         if(gameState_.getMoveL()==0){
             throw std::logic_error("You cannot select a Category before you have rolled the dice the first time.");
+        }
+        //If filled
+        switch(category){
+            case 1:
+                if(gameState_.getFullYahtzeeState().getAcesL()!=0){throw std::logic_error("Already Filled"); return;} break;
+            case 2:
+                if(gameState_.getFullYahtzeeState().getTwosL()!=0){throw std::logic_error("Already Filled"); return;} break;
+            case 3:
+                if(gameState_.getFullYahtzeeState().getThreesL()!=0){throw std::logic_error("Already Filled"); return;} break;
+            case 4:
+                if(gameState_.getFullYahtzeeState().getFoursL()!=0){throw std::logic_error("Already Filled"); return;} break;
+            case 5:
+                if(gameState_.getFullYahtzeeState().getFivesL()!=0){throw std::logic_error("Already Filled"); return;} break;
+            case 6:
+                if(gameState_.getFullYahtzeeState().getSixesL()!=0){throw std::logic_error("Already Filled"); return;} break;
+            case 7: //Three of A Kind
+                if(gameState_.getFullYahtzeeState().getThreeOfAKindL()!=0){throw std::logic_error("Already Filled"); return;} break;
+            case 8: //Four of A Kind
+                if(gameState_.getFullYahtzeeState().getFourOfAKindL()!=0){throw std::logic_error("Already Filled"); return;} break;
+            case 9: //FullHouse
+                if(gameState_.getFullYahtzeeState().getFullHouseL()!=0){throw std::logic_error("Already Filled"); return;} break;
+            case 10: //small straight
+                if(gameState_.getFullYahtzeeState().getSmallStraightL()!=0){throw std::logic_error("Already Filled"); return;} break;
+            case 11: //large straight
+                if(gameState_.getFullYahtzeeState().getLargeStraightL()!=0){throw std::logic_error("Already Filled"); return;} break;
+            case 12: //Yahtzee
+                if(gameState_.getFullYahtzeeState().getYahtzeeL()!=0){throw std::logic_error("Already Filled"); return;} break;
+            case 13: //Chance
+                if(gameState_.getFullYahtzeeState().getChanceL()!=0){throw std::logic_error("Already Filled"); return;} break;
         }
         unsigned long int DicesCount;
         switch(category){
@@ -45,12 +75,26 @@ namespace yahtzee{
                 break;
             case 7: //Three of A Kind
             case 8: //Four of A Kind
+            case 9: //FullHouse
+            case 10: //small straight
+            case 11: //large straight
+            case 12: //Yahtzee
             case 13: //Chance
-            //Noch nicht fertig
                 DicesCount = gameState_.getDiceState().getDice0L()+gameState_.getDiceState().getDice1L()+gameState_.getDiceState().getDice2L()+gameState_.getDiceState().getDice3L()+gameState_.getDiceState().getDice4L();
+                if(((gameState_.getDiceState().getDice0L()==gameState_.getDiceState().getDice1L())&&(gameState_.getDiceState().getDice2L() == gameState_.getDiceState().getDice3L())) && ((gameState_.getDiceState().getDice4L()==gameState_.getDiceState().getDice1L()) && (gameState_.getDiceState().getDice4L()==gameState_.getDiceState().getDice3L()))){
+                    gameState_.incrementTimesOfYahtzee();
+                    if(category==13){
+                        gameState_.getFullYahtzeeState().setYahtzeeL(1);
+                    }
+                } else if(category==13){
+                    gameState_.getFullYahtzeeState().setYahtzeeL(2);
+                }
                 switch(category){
                     case 7:
                     case 8:
+                    case 9:
+                    case 10:
+                    case 11:
                         std::array<unsigned long, 5> Temp;
                         for(int i = 0; i < 5; i++){
                             Temp[i] = gameState_.getDiceState().getDiceL(i);
@@ -58,7 +102,7 @@ namespace yahtzee{
                         std::sort(Temp.begin(), Temp.end());
                         switch(category){
                             case 7:
-                                if((Temp.at(0)==Temp.at(1))&&(Temp.at(1)==Temp.at(2))||(Temp.at(1)==Temp.at(2))&&(Temp.at(2)==Temp.at(3))||(Temp.at(2)==Temp.at(3))&&(Temp.at(3)==Temp.at(4))){
+                                if((((Temp.at(0)==Temp.at(1))&&(Temp.at(1)==Temp.at(2)))||((Temp.at(1)==Temp.at(2))&&(Temp.at(2)==Temp.at(3)))||((Temp.at(2)==Temp.at(3))&&(Temp.at(3)==Temp.at(4))))){
                                     gameState_.getFullYahtzeeState().setThreeOfAKindL(DicesCount);
                                 } else {
                                     gameState_.getFullYahtzeeState().setThreeOfAKindL(31);
@@ -71,6 +115,26 @@ namespace yahtzee{
                                     gameState_.getFullYahtzeeState().setFourOfAKindL(31);
                                 }
                                 break;
+                            case 9:
+                                if(((Temp.at(0)==Temp.at(1))&&(Temp.at(1)==Temp.at(2))&&(Temp.at(3)==Temp.at(3)))||((Temp.at(0)==Temp.at(1))&&(Temp.at(2)==Temp.at(3))&&(Temp.at(3)==Temp.at(4)))){
+                                    gameState_.getFullYahtzeeState().setFullHouseL(1);
+                                } else {
+                                    gameState_.getFullYahtzeeState().setFullHouseL(2);                                    
+                                }
+                                break;
+                            case 10:
+                                if(((Temp.at(0)==1)&&(Temp.at(1)==2)&&(Temp.at(2)==3)&&(Temp.at(3)==4))||((Temp.at(0)==2)&&(Temp.at(1)==3)&&(Temp.at(2)==4)&&(Temp.at(3)==5))||((Temp.at(0)==3)&&(Temp.at(1)==4)&&(Temp.at(2)==5)&&(Temp.at(3)==6))||((Temp.at(1)==1)&&(Temp.at(2)==2)&&(Temp.at(3)==3)&&(Temp.at(4)==4))||((Temp.at(1)==2)&&(Temp.at(2)==3)&&(Temp.at(3)==4)&&(Temp.at(4)==5))||((Temp.at(1)==3)&&(Temp.at(2)==4)&&(Temp.at(3)==5)&&(Temp.at(4)==6))){
+                                    gameState_.getFullYahtzeeState().setSmallStraightL(1);
+                                }  else {
+                                    gameState_.getFullYahtzeeState().setSmallStraightL(2);                                 
+                                }  
+                                break;
+                            case 11:
+                                if(((Temp.at(0)==1)&&(Temp.at(1)==2)&&(Temp.at(2)==3)&&(Temp.at(3)==4)&&(Temp.at(4)==5))||((Temp.at(0)==2)&&(Temp.at(1)==3)&&(Temp.at(2)==4)&&(Temp.at(3)==5)&&(Temp.at(4)==6))){
+                                    gameState_.getFullYahtzeeState().setLargeStraightL(1);
+                                } else {
+                                    gameState_.getFullYahtzeeState().setLargeStraightL(2);
+                                }
                         }
                         break;
                     case 13:
@@ -78,9 +142,6 @@ namespace yahtzee{
                         break;
                     default:
                         throw std::logic_error("How???"); break;
-                }
-                if(((gameState_.getDiceState().getDice0L()==gameState_.getDiceState().getDice1L())&&(gameState_.getDiceState().getDice2L() == gameState_.getDiceState().getDice3L())) && ((gameState_.getDiceState().getDice4L()==gameState_.getDiceState().getDice1L()) && (gameState_.getDiceState().getDice4L()==gameState_.getDiceState().getDice3L()))){
-                    gameState_.incrementTimesOfYahtzee();
                 }
             }
         gameState_.setLastMove(category);
