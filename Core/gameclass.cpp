@@ -1,6 +1,7 @@
 #include <random> //Random
 #include <array>
 #include <stdexcept> //Exceptions
+#include <algorithm>
 #include "state.hpp"
 #include "gameclass.hpp"
 namespace yahtzee{
@@ -45,12 +46,27 @@ namespace yahtzee{
             case 7: //Three of A Kind
             case 8: //Four of A Kind
             case 13: //Chance
+            //Noch nicht fertig
                 DicesCount = gameState_.getDiceState().getDice0L()+gameState_.getDiceState().getDice1L()+gameState_.getDiceState().getDice2L()+gameState_.getDiceState().getDice3L()+gameState_.getDiceState().getDice4L();
                 switch(category){
                     case 7:
                     case 8:
                         std::array<unsigned long, 5> Temp;
-                        Temp.
+                        for(int i = 0; i < 5; i++){
+                            Temp[i] = gameState_.getDiceState().getDiceL(i);
+                        }
+                        std::sort(Temp.begin(), Temp.end());
+                        switch(category){
+                            case 7:
+                                break;
+                            case 8:
+                                if(((Temp.at(0)==Temp.at(1))&&(Temp.at(2)==Temp.at(3))&&(Temp.at(3)==Temp.at(1)))||((Temp.at(1)==Temp.at(2))&&(Temp.at(3)==Temp.at(4))&&(Temp.at(4)==Temp.at(1)))){
+                                    gameState_.getFullYahtzeeState().setFourOfAKindL(DicesCount);
+                                } else {
+                                    gameState_.getFullYahtzeeState().setFourOfAKindL(31);
+                                }
+                                break;
+                        }
                         break;
                     case 13:
                         gameState_.getFullYahtzeeState().setChanceL(DicesCount);
