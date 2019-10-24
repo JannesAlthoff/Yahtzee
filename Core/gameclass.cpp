@@ -58,6 +58,11 @@ namespace yahtzee{
                         std::sort(Temp.begin(), Temp.end());
                         switch(category){
                             case 7:
+                                if((Temp.at(0)==Temp.at(1))&&(Temp.at(1)==Temp.at(2))||(Temp.at(1)==Temp.at(2))&&(Temp.at(2)==Temp.at(3))||(Temp.at(2)==Temp.at(3))&&(Temp.at(3)==Temp.at(4))){
+                                    gameState_.getFullYahtzeeState().setThreeOfAKindL(DicesCount);
+                                } else {
+                                    gameState_.getFullYahtzeeState().setThreeOfAKindL(31);
+                                }
                                 break;
                             case 8:
                                 if(((Temp.at(0)==Temp.at(1))&&(Temp.at(2)==Temp.at(3))&&(Temp.at(3)==Temp.at(1)))||((Temp.at(1)==Temp.at(2))&&(Temp.at(3)==Temp.at(4))&&(Temp.at(4)==Temp.at(1)))){
