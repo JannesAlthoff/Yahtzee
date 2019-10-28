@@ -23,7 +23,8 @@ int main(){
               << "This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'." << std::endl
               << "This is free software, and you are welcome to redistribute it" << std::endl
               << "under certain conditions; type `show c' for details." << std::endl;
-    while (true){
+    bool exit(false);
+    while (!exit){
         std::cout << ">";
         std::string in;
         std::cin >> in;
