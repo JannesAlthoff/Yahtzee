@@ -17,17 +17,19 @@
  */
 #include <iostream>
 #include <string>
+#include "cli_paser.hpp"
 
 int main(){
-    std::cout << "Yahtzee  Copyright (C) 2019  Jannes Althoff" << std::endl
+    std::cout << "Yahtzee  Copyright (C) 2019  Jannes Althoff"                                << std::endl
               << "This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'." << std::endl
-              << "This is free software, and you are welcome to redistribute it" << std::endl
-              << "under certain conditions; type `show c' for details." << std::endl;
+              << "This is free software, and you are welcome to redistribute it"              << std::endl
+              << "under certain conditions; type `show c' for details."                       << std::endl;
     bool exit(false);
+    std::string in;
     while (!exit){
         std::cout << ">";
-        std::string in;
-        std::cin >> in;
+        std::getline(std::cin, in);
+        exit=parseInput(in);
     }
 }
 

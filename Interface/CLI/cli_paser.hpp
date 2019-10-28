@@ -17,5 +17,7 @@
  */
 #ifndef CLIPASERYAHTZEE_HPP
 #define CLIPASERYAHTZEE_HPP
+#include <string>
 
+bool parseInput(std::string in);
 #endif
