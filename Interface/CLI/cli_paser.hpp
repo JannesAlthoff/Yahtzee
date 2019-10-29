@@ -20,4 +20,5 @@
 #include <string>
 
 bool parseInput(std::string in);
+bool funcShow(std::string arg);
 #endif
