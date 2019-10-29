@@ -20,10 +20,10 @@
 
 bool parseInput(std::string in){
     if(in == "show w"){
-        std::cout << "This program is free software: you can redistribute it and/or modify" << std::endl
-                  << "it under the terms of the GNU General Public License as published by" << std::endl
-                  << "the Free Software Foundation, either version 3 of the License, or"    << std::endl
-                  << "(at your option) any later version."                                  << std::endl;
+        std::cout << "This program is distributed in the hope that it will be useful," << std::endl
+                  << "but WITHOUT ANY WARRANTY; without even the implied warranty of"  << std::endl
+                  << "ERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the"    << std::endl
+                  << "GNU General Public License for mordde details."                  << std::endl;
     } else if (in == "show c"){
         std::cout << "This program is free software: you can redistribute it and/or modify" << std::endl
                   << "it under the terms of the GNU General Public License as published by" << std::endl
