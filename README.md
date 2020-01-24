@@ -1,1 +1,1 @@
-# JahtzeeCore
+# Yahtzee
