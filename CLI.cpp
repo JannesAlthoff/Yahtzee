@@ -23,7 +23,7 @@
 #include <iostream>
 #include <string>
 
-int main(){
+int main(void){
 	yahtzee::cli::parser parserH;
 	std::string in;
 	std::cout 	<< "Yahtzee  Copyright (C) 2019  Jannes Althoff"                                << std::endl
