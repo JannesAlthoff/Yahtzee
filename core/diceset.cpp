@@ -91,7 +91,7 @@ bool yahtzee::core::diceSet::isSmallStraight(){
 	for (dice Dice : diceSet_){
 			dice_val.at(Dice.getDiceVal()-1) = true;
 	}
-	if ((dice_val.at(0) && dice_val.at(1)) && (dice_val.at(2) && dice_val.at(3)) || (dice_val.at(1) && dice_val.at(2)) && (dice_val.at(3) && dice_val.at(4)) || (dice_val.at(2) && dice_val.at(3)) && (dice_val.at(4) && dice_val.at(5))){
+	if (((dice_val.at(0) && dice_val.at(1)) && (dice_val.at(2) && dice_val.at(3))) || (dice_val.at(1) && dice_val.at(2)) && (dice_val.at(3) && dice_val.at(4)) || (dice_val.at(2) && dice_val.at(3)) && (dice_val.at(4) && dice_val.at(5))){
 		return true;
 	} else {
 		return false;
