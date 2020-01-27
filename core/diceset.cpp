@@ -62,7 +62,7 @@ bool yahtzee::core::diceSet::randomizeSelected(){
 	}
 }
 bool yahtzee::core::diceSet::isYahtzee(){
-	if (move_ == 0 || move_ == -1){
+	if (move_ == 0){
 		return false;
 	}
 	if(fiveSame(getDiceVal(0), getDiceVal(1), getDiceVal(2), getDiceVal(3), getDiceVal(4))){
@@ -98,7 +98,7 @@ bool yahtzee::core::diceSet::isSmallStraight(){
 	}
 }
 bool yahtzee::core::diceSet::isFullHouse(){
-	if (move_ == 0 || move_ == -1){
+	if (move_ == 0){
 		return false;
 	}
 	std::array<dice, 5> tempDiceSet_(diceSet_);
@@ -110,7 +110,7 @@ bool yahtzee::core::diceSet::isFullHouse(){
 	}
 }
 bool yahtzee::core::diceSet::isThreeOfAKind(){
-	if (move_ == 0 || move_ == -1){
+	if (move_ == 0){
 		return false;
 	}
 	std::array<dice, 5> tempDiceSet_(diceSet_);
@@ -122,7 +122,7 @@ bool yahtzee::core::diceSet::isThreeOfAKind(){
 	}
 }
 bool yahtzee::core::diceSet::isFourOfAKind(){
-	if (move_ == 0 || move_ == -1){
+	if (move_ == 0){
 		return false;
 	}
 	std::array<dice, 5> tempDiceSet_(diceSet_);
