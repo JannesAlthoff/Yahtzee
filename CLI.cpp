@@ -27,9 +27,9 @@ int main(void){
 	yahtzee::cli::parser parserH;
 	std::string in;
 	std::cout 	<< "Yahtzee  Copyright (C) 2019  Jannes Althoff"                                << std::endl
-				<< "This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'." << std::endl
-				<< "This is free software, and you are welcome to redistribute it"              << std::endl
-				<< "under certain conditions; type `show c' for details."                       << std::endl;
+			<< "This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'." << std::endl
+			<< "This is free software, and you are welcome to redistribute it"              << std::endl
+			<< "under certain conditions; type `show c' for details."                       << std::endl;
 	while (true){
 		std::cout << ">";
 		std::getline(std::cin, in);
