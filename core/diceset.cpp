@@ -72,7 +72,7 @@ bool yahtzee::core::diceSet::isYahtzee(){
 	}
 }
 bool yahtzee::core::diceSet::isLargeStraight(){
-	if (move_ == 0 || move_ == -1){
+        if (move_ == 0){
 		return false;
 	}
 	std::array<dice, 5> tempDiceSet_(diceSet_);
@@ -84,7 +84,7 @@ bool yahtzee::core::diceSet::isLargeStraight(){
 	}
 }
 bool yahtzee::core::diceSet::isSmallStraight(){
-	if (move_ == 0 || move_ == -1){
+        if (move_ == 0){
 		return false;
 	}
 	std::array<bool, 6> dice_val{false, false, false, false, false, false};
