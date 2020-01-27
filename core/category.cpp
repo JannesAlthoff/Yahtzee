@@ -125,6 +125,8 @@ bool yahtzee::core::category::setStatus(diceSet &set){
 					case chance:
 						status_=temp;
 						break;
+					default:
+						break;
 				}
 				break;
 			}
@@ -164,6 +166,8 @@ bool yahtzee::core::category::setStatus(diceSet &set){
 				}
 				break;
 			}
+			default:
+				break;
 		}
 		set.clear();
 		return true;
