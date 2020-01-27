@@ -63,9 +63,9 @@ namespace yahtzee{
 					diceSet_{diceSet()}{
 				}
 			private:
-				diceSet diceSet_;
 				std::array<category, 13> categories_;
 				uint8_t overallMove_;
+				diceSet diceSet_;
 		};
 	}
 }
